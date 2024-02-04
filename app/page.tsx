@@ -1,12 +1,14 @@
 import { collection, getDocs, Firestore } from "firebase/firestore/lite";
 import { db } from "../firebase/firebase";
 import Image from "next/image";
+import GameCard from "@/components/GameCard";
+import { Game } from "@/types/common.types";
 
 export default async function Home() {
   async function getGames(db: Firestore) {
     const gamesCol = collection(db, "games");
     const gamesSnapshot = await getDocs(gamesCol);
-    const gamesList = gamesSnapshot.docs.map((doc) => doc.data());
+    const gamesList = gamesSnapshot.docs.map((doc) => doc.data()) as Game[];
     console.log(gamesList);
     return gamesList;
   }
@@ -19,18 +21,7 @@ export default async function Home() {
         <h1 className="text-4xl">Games</h1>
         <div className="grid grid-cols-4 gap-4 mt-8">
           {games.map((game) => {
-            return (
-              <div className="flex flex-col items-center justify-center">
-                <Image
-                  src={game.imageUrl}
-                  alt={game.name}
-                  width={150}
-                  height={100}
-                />
-                <h2 className="text-xl font-bold">{game.name}</h2>
-                <p className="">{game.description}</p>
-              </div>
-            );
+            return <GameCard key={game.name} game={game} />;
           })}
         </div>
       </section>
