@@ -10,8 +10,14 @@ export default function GameCard({ game }: GameCardProps) {
     game;
 
   return (
-    <div className="">
-      <Image src={imageUrl} alt={name} width={150} height={100} />
+    <div className="rounded shadow-md hover:shadow-lg focus:shadow-lg w-48 overflow-hidden">
+      <Image
+        src={imageUrl}
+        alt={name}
+        width={150}
+        height={100}
+        className="w-full h-64"
+      />
       <h2 className="text-xl font-bold">{name}</h2>
       <p className="">{description}</p>
     </div>

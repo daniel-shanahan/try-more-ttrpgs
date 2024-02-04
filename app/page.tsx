@@ -16,10 +16,10 @@ export default async function Home() {
   const games = await getGames(db);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <section>
-        <h1 className="text-4xl">Games</h1>
-        <div className="grid grid-cols-4 gap-4 mt-8">
+    <main className="min-h-screen p-24">
+      <section className="py-12">
+        <h1 className="text-4xl mb-8">Games</h1>
+        <div className="flex flex-wrap gap-4">
           {games.map((game) => {
             return <GameCard key={game.name} game={game} />;
           })}
