@@ -9,14 +9,13 @@ export default async function Home() {
     const gamesCol = collection(db, "games");
     const gamesSnapshot = await getDocs(gamesCol);
     const gamesList = gamesSnapshot.docs.map((doc) => doc.data()) as Game[];
-    console.log(gamesList);
     return gamesList;
   }
 
   const games = await getGames(db);
 
   return (
-    <main className="container mx-auto px-4">
+    <main className="container mx-auto px-4 pt-16">
       <section className="py-12">
         <h1 className="text-4xl mb-8">Games</h1>
         <div className="flex flex-wrap gap-4">
