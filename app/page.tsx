@@ -16,7 +16,7 @@ export default async function Home() {
   const games = await getGames(db);
 
   return (
-    <main className="min-h-screen p-24">
+    <main className="container mx-auto px-4">
       <section className="py-12">
         <h1 className="text-4xl mb-8">Games</h1>
         <div className="flex flex-wrap gap-4">
