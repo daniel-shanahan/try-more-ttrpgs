@@ -17,12 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-emerald-100`}>
-        <nav className="fixed bg-emerald-700 text-emerald-100 py-4 px-6 w-full flex justify-between items-center">
+        {/* <nav className="fixed bg-emerald-700 text-emerald-100 py-4 px-6 w-full flex justify-between items-center">
           <span className="text-xl font-medium">Try More TTRPGs</span>
           <button className="rounded-lg bg-emerald-100 text-emerald-700 font-semibold shadow px-4 py-2 hover:shadow-xl hover:bg-emerald-50 hover:text-emerald-800 transition motion-reduce:transition-none">
             Add Game
           </button>
-        </nav>
+        </nav> */}
         {children}
       </body>
     </html>
