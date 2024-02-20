@@ -6,7 +6,7 @@ import { Crunch, Genre, Game } from "@/types/common.types";
 import { db } from "@/firebase/firebase";
 import { collection, addDoc } from "firebase/firestore/lite";
 
-export default function AddGame() {
+export default function AddGameForm() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
