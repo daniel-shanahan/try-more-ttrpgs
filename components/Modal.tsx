@@ -1,6 +1,5 @@
 "use client";
 
-import { set } from "firebase/database";
 import { useState, useRef, useEffect } from "react";
 
 interface ModalProps {
