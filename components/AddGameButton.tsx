@@ -17,7 +17,6 @@ export default function AddGameButton() {
 
   const handleFormSubmit = (game: Game) => {
     setGameData(game);
-    console.log(game);
     handleCloseGameModal();
   };
 
