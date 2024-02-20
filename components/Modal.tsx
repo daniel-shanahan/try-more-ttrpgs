@@ -6,9 +6,15 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  className?: string;
 }
 
-export default function Modal({ isOpen, onClose, children }: ModalProps) {
+export default function Modal({
+  isOpen,
+  onClose,
+  children,
+  className,
+}: ModalProps) {
   const [isModalOpen, setIsModalOpen] = useState(isOpen);
   const modalRef = useRef<HTMLDialogElement | null>(null);
 
@@ -39,7 +45,7 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
   };
 
   return (
-    <dialog ref={modalRef} onKeyDown={handleKeyDown}>
+    <dialog ref={modalRef} onKeyDown={handleKeyDown} className={className}>
       <button onClick={handleCloseModal}>x</button>
       {children}
     </dialog>

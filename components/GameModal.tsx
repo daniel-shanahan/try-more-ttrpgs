@@ -53,10 +53,14 @@ export default function GameModal({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      className="w-1/2 p-4 rounded-lg backdrop:bg-black backdrop:bg-opacity-50"
+    >
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-4 container w-1/2 mx-auto"
+        className="flex flex-col gap-4 container mx-auto"
       >
         <h1>Add Game</h1>
         <label>
@@ -97,7 +101,12 @@ export default function GameModal({
             <select
               name="played"
               value={formState.played.toString()}
-              onChange={handleInputChange}
+              onChange={(e) =>
+                setFormState((prev) => ({
+                  ...prev,
+                  played: e.target.value === "true",
+                }))
+              }
               className="block"
             >
               <option value="false">No</option>
@@ -124,6 +133,7 @@ export default function GameModal({
                 type="radio"
                 name="genre"
                 checked={formState.genre === "Fantasy"}
+                value="Fantasy"
                 onChange={handleInputChange}
                 required
               />
@@ -134,6 +144,7 @@ export default function GameModal({
                 type="radio"
                 name="genre"
                 checked={formState.genre === "Sci-Fi"}
+                value="Sci-Fi"
                 onChange={handleInputChange}
               />
               Sci-Fi
@@ -143,6 +154,7 @@ export default function GameModal({
                 type="radio"
                 name="genre"
                 checked={formState.genre === "Horror"}
+                value="Horror"
                 onChange={handleInputChange}
               />
               Horror
@@ -152,6 +164,7 @@ export default function GameModal({
                 type="radio"
                 name="genre"
                 checked={formState.genre === "Superhero"}
+                value="Superhero"
                 onChange={handleInputChange}
               />
               Superhero
@@ -161,6 +174,7 @@ export default function GameModal({
                 type="radio"
                 name="genre"
                 checked={formState.genre === "Modern"}
+                value="Modern"
                 onChange={handleInputChange}
               />
               Modern
@@ -173,6 +187,7 @@ export default function GameModal({
                 type="radio"
                 name="crunch"
                 checked={formState.crunch === "High"}
+                value="High"
                 onChange={handleInputChange}
                 required
               />
@@ -183,6 +198,7 @@ export default function GameModal({
                 type="radio"
                 name="crunch"
                 checked={formState.crunch === "Medium"}
+                value="Medium"
                 onChange={handleInputChange}
               />
               Medium
@@ -192,6 +208,7 @@ export default function GameModal({
                 type="radio"
                 name="crunch"
                 checked={formState.crunch === "Low"}
+                value="Low"
                 onChange={handleInputChange}
               />
               Low
@@ -204,7 +221,9 @@ export default function GameModal({
                 type="radio"
                 name="gmRequired"
                 checked={formState.gmRequired === true}
-                onChange={handleInputChange}
+                onChange={(e) =>
+                  setFormState((prev) => ({ ...prev, gmRequired: true }))
+                }
                 required
               />
               Yes
@@ -214,7 +233,9 @@ export default function GameModal({
                 type="radio"
                 name="gmRequired"
                 checked={formState.gmRequired === false}
-                onChange={handleInputChange}
+                onChange={(e) =>
+                  setFormState((prev) => ({ ...prev, gmRequired: false }))
+                }
               />
               No
             </label>
