@@ -3,9 +3,13 @@
 import { Game } from "@/types/common.types";
 import { useState } from "react";
 import GameModal from "./GameModal";
+import { useRouter } from "next/navigation";
+import { db } from "@/firebase/firebase";
+import { collection, addDoc } from "firebase/firestore/lite";
 
 export default function AddGameButton() {
   const [isGameModalOpen, setGameModalOpen] = useState(false);
+  const router = useRouter();
 
   const handleOpenGameModal = () => {
     setGameModalOpen(true);
@@ -15,8 +19,10 @@ export default function AddGameButton() {
     setGameModalOpen(false);
   };
 
-  const handleFormSubmit = (game: Game) => {
+  const handleFormSubmit = async (game: Game) => {
+    await addDoc(collection(db, "games"), game);
     handleCloseGameModal();
+    router.refresh();
   };
 
   return (
