@@ -52,10 +52,15 @@ export default function GameModal({
     setFormState(initialGameModalData);
   };
 
+  const handleClose = () => {
+    onClose();
+    setFormState(initialGameModalData);
+  };
+
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       className="w-1/2 p-4 rounded-lg backdrop:bg-black backdrop:bg-opacity-50"
     >
       <form

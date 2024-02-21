@@ -1,11 +1,11 @@
 "use client";
+
 import { Game } from "@/types/common.types";
 import { useState } from "react";
 import GameModal from "./GameModal";
 
 export default function AddGameButton() {
   const [isGameModalOpen, setGameModalOpen] = useState(false);
-  const [gameData, setGameData] = useState<Game | null>(null);
 
   const handleOpenGameModal = () => {
     setGameModalOpen(true);
@@ -16,7 +16,6 @@ export default function AddGameButton() {
   };
 
   const handleFormSubmit = (game: Game) => {
-    setGameData(game);
     handleCloseGameModal();
   };
 
