@@ -9,16 +9,16 @@ import { db } from "../firebase/firebase";
 import { Game } from "@/types/common.types";
 import GamesSection from "./GamesSection";
 
-async function getGamesToTry(db: Firestore) {
+async function getGamesPlayed(db: Firestore) {
   const gamesRef = collection(db, "games");
-  const q = query(gamesRef, where("played", "==", false));
+  const q = query(gamesRef, where("played", "==", true));
   const querySnapshot = await getDocs(q);
   const gamesList = querySnapshot.docs.map((doc) => doc.data()) as Game[];
   return gamesList;
 }
 
 export default async function GamesToTry() {
-  const gamesToTry = await getGamesToTry(db);
+  const gamesPlayed = await getGamesPlayed(db);
 
-  return <GamesSection title="Games to try" games={gamesToTry} />;
+  return <GamesSection title="Games I've played" games={gamesPlayed} />;
 }
