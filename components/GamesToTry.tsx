@@ -4,6 +4,7 @@ import {
   Firestore,
   query,
   where,
+  orderBy,
 } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import { Game } from "@/types/common.types";
@@ -11,7 +12,7 @@ import GamesSection from "./GamesSection";
 
 async function getGamesToTry(db: Firestore) {
   const gamesRef = collection(db, "games");
-  const q = query(gamesRef, where("played", "==", false));
+  const q = query(gamesRef, where("played", "==", false), orderBy("name"));
   const querySnapshot = await getDocs(q);
   const gamesList = querySnapshot.docs.map((doc) => doc.data()) as Game[];
   return gamesList;

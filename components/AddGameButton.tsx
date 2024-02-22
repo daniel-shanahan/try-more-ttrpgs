@@ -5,7 +5,7 @@ import { useState } from "react";
 import GameModal from "./GameModal";
 import { useRouter } from "next/navigation";
 import { db } from "@/firebase/firebase";
-import { collection, addDoc } from "firebase/firestore/lite";
+import { collection, addDoc } from "firebase/firestore";
 
 export default function AddGameButton() {
   const [isGameModalOpen, setGameModalOpen] = useState(false);
