@@ -11,4 +11,5 @@ export type Game = {
   gmRequired: boolean;
   played: boolean;
   playedDate: string;
+  thoughts: string;
 };

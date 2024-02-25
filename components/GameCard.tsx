@@ -15,6 +15,7 @@ export default function GameCard({ game }: GameCardProps) {
     gmRequired,
     playedDate,
     played,
+    thoughts,
   } = game;
 
   return (
@@ -35,6 +36,7 @@ export default function GameCard({ game }: GameCardProps) {
               {playedDate}
             </p>
           )}
+          {thoughts && <p className="py-2">{thoughts}</p>}
         </div>
       </div>
       <div className="flex flex-wrap gap-1.5 px-6 py-4">

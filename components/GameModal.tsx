@@ -19,6 +19,7 @@ const initialGameModalData: Game = {
   gmRequired: true,
   played: false,
   playedDate: "",
+  thoughts: "",
 };
 
 export default function GameModal({
@@ -80,16 +81,6 @@ export default function GameModal({
           />
         </label>
         <label>
-          Description
-          <textarea
-            name="description"
-            value={formState.description}
-            onChange={handleInputChange}
-            rows={2}
-            className="block w-full"
-          />
-        </label>
-        <label>
           Image URL
           <input
             type="url"
@@ -100,36 +91,16 @@ export default function GameModal({
             required
           />
         </label>
-        <div className="flex justify-between">
-          <label>
-            Played
-            <select
-              name="played"
-              value={formState.played.toString()}
-              onChange={(e) =>
-                setFormState((prev) => ({
-                  ...prev,
-                  played: e.target.value === "true",
-                }))
-              }
-              className="block"
-            >
-              <option value="false">No</option>
-              <option value="true">Yes</option>
-            </select>
-          </label>
-          <label>
-            Played Date
-            <input
-              type="date"
-              name="playedDate"
-              value={formState.playedDate}
-              onChange={handleInputChange}
-              className="block"
-              disabled={!formState.played}
-            />
-          </label>
-        </div>
+        <label>
+          Description
+          <textarea
+            name="description"
+            value={formState.description}
+            onChange={handleInputChange}
+            rows={2}
+            className="block w-full"
+          />
+        </label>
         <div className="flex justify-between">
           <fieldset className="flex flex-col">
             <legend>Genre</legend>
@@ -246,6 +217,49 @@ export default function GameModal({
             </label>
           </fieldset>
         </div>
+        <div className="flex justify-between">
+          <label>
+            Played
+            <select
+              name="played"
+              value={formState.played.toString()}
+              onChange={(e) =>
+                setFormState((prev) => ({
+                  ...prev,
+                  played: e.target.value === "true",
+                }))
+              }
+              className="block"
+            >
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+            </select>
+          </label>
+          {formState.played && (
+            <label>
+              Played Date
+              <input
+                type="date"
+                name="playedDate"
+                value={formState.playedDate}
+                onChange={handleInputChange}
+                className="block"
+              />
+            </label>
+          )}
+        </div>
+        {formState.played && (
+          <label>
+            Thoughts
+            <textarea
+              name="thoughts"
+              value={formState.thoughts}
+              onChange={handleInputChange}
+              rows={2}
+              className="block w-full"
+            />
+          </label>
+        )}
         <button
           type="submit"
           className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-emerald-100 font-semibold rounded-full shadow-md hover:shadow-lg transition motion-reduce:transition-none"
