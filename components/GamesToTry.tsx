@@ -14,8 +14,9 @@ async function getGamesToTry(db: Firestore) {
   const gamesRef = collection(db, "games");
   const q = query(gamesRef, where("played", "==", false), orderBy("name"));
   const querySnapshot = await getDocs(q);
-  const gamesList = querySnapshot.docs.map((doc) => doc.data()) as Game[];
-  return gamesList;
+  return querySnapshot.docs.map((doc) => {
+    return { id: doc.id, data: doc.data() as Game };
+  });
 }
 
 export default async function GamesToTry() {

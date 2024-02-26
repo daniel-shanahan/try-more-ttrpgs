@@ -3,7 +3,7 @@ import { Game } from "@/types/common.types";
 
 interface GamesSectionProps {
   title: string;
-  games: Game[];
+  games: { id: string; data: Game }[];
 }
 
 export default function GamesSection({ title, games }: GamesSectionProps) {
@@ -12,7 +12,7 @@ export default function GamesSection({ title, games }: GamesSectionProps) {
       <h1 className="text-4xl mb-8">{title}</h1>
       <div className="flex flex-wrap gap-4">
         {games.map((game) => {
-          return <GameCard key={game.name} game={game} />;
+          return <GameCard key={game.id} id={game.id} game={game.data} />;
         })}
       </div>
     </section>

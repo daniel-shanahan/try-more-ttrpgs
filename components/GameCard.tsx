@@ -1,11 +1,14 @@
+"use client";
+
 import { Game } from "@/types/common.types";
 import Image from "next/image";
 
 interface GameCardProps {
+  id: string;
   game: Game;
 }
 
-export default function GameCard({ game }: GameCardProps) {
+export default function GameCard({ id, game }: GameCardProps) {
   const {
     name,
     imageUrl,

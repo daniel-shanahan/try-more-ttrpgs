@@ -23,7 +23,9 @@ async function getGamesPlayedWithDate(
     orderBy("name")
   );
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((doc) => doc.data()) as Game[];
+  return querySnapshot.docs.map((doc) => {
+    return { id: doc.id, data: doc.data() as Game };
+  });
 }
 
 async function getGamesPlayedWithoutDate(
@@ -36,7 +38,9 @@ async function getGamesPlayedWithoutDate(
     orderBy("name")
   );
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((doc) => doc.data()) as Game[];
+  return querySnapshot.docs.map((doc) => {
+    return { id: doc.id, data: doc.data() as Game };
+  });
 }
 
 async function getGamesPlayed(db: Firestore) {
