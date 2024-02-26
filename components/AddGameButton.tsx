@@ -34,11 +34,13 @@ export default function AddGameButton() {
         Add Game
       </button>
 
-      <GameModal
-        isOpen={isGameModalOpen}
-        onClose={handleCloseGameModal}
-        onSubmit={handleFormSubmit}
-      />
+      {isGameModalOpen && (
+        <GameModal
+          isOpen={isGameModalOpen}
+          onClose={handleCloseGameModal}
+          onSubmit={handleFormSubmit}
+        />
+      )}
     </>
   );
 }

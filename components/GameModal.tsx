@@ -74,6 +74,7 @@ export default function GameModal({
           <input
             type="text"
             name="name"
+            ref={focusInputRef}
             value={formState.name}
             onChange={handleInputChange}
             className="block w-full"

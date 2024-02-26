@@ -19,7 +19,7 @@ export default function GameCard({ game }: GameCardProps) {
   } = game;
 
   return (
-    <div className="flex flex-col justify-between rounded shadow-md hover:shadow-lg focus:shadow-lg w-64 overflow-hidden border border-gray-200">
+    <button className="flex flex-col justify-between rounded shadow-md hover:shadow-lg focus:shadow-lg w-64 overflow-hidden border border-gray-200 transition motion-reduce:transition-none text-left">
       <div>
         <Image
           src={imageUrl}
@@ -50,6 +50,6 @@ export default function GameCard({ game }: GameCardProps) {
           {gmRequired ? "GM Required" : "GM-less"}
         </span>
       </div>
-    </div>
+    </button>
   );
 }
