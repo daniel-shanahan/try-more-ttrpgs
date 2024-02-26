@@ -7,6 +7,18 @@ import { useRouter } from "next/navigation";
 import { db } from "@/firebase/firebase";
 import { collection, addDoc } from "firebase/firestore";
 
+const initialGameModalData: Game = {
+  name: "",
+  description: "",
+  imageUrl: "",
+  crunch: "High",
+  genre: "Fantasy",
+  gmRequired: true,
+  played: false,
+  playedDate: "",
+  thoughts: "",
+};
+
 export default function AddGameButton() {
   const [isGameModalOpen, setGameModalOpen] = useState(false);
   const router = useRouter();
@@ -39,6 +51,7 @@ export default function AddGameButton() {
           isOpen={isGameModalOpen}
           onClose={handleCloseGameModal}
           onSubmit={handleFormSubmit}
+          initialData={initialGameModalData}
         />
       )}
     </>

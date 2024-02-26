@@ -8,27 +8,17 @@ interface GameModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (game: Game) => void;
+  initialData: Game;
 }
-
-const initialGameModalData: Game = {
-  name: "",
-  description: "",
-  imageUrl: "",
-  crunch: "High",
-  genre: "Fantasy",
-  gmRequired: true,
-  played: false,
-  playedDate: "",
-  thoughts: "",
-};
 
 export default function GameModal({
   isOpen,
   onClose,
   onSubmit,
+  initialData,
 }: GameModalProps) {
   const focusInputRef = useRef<HTMLInputElement | null>(null);
-  const [formState, setFormState] = useState<Game>(initialGameModalData);
+  const [formState, setFormState] = useState<Game>(initialData);
 
   useEffect(() => {
     if (isOpen && focusInputRef.current) {
@@ -50,12 +40,10 @@ export default function GameModal({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(formState);
-    setFormState(initialGameModalData);
   };
 
   const handleClose = () => {
     onClose();
-    setFormState(initialGameModalData);
   };
 
   return (
@@ -68,7 +56,6 @@ export default function GameModal({
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 container mx-auto"
       >
-        <h1>Add Game</h1>
         <label>
           Name
           <input
