@@ -66,11 +66,12 @@ export default function GameModal({
     <Modal
       isOpen={isOpen}
       onClose={handleClose}
-      className="w-1/2 p-4 rounded-lg backdrop:bg-black backdrop:bg-opacity-50"
+      title={mode === "add" ? "Add Game" : "Edit Game"}
+      className="w-full md:w-9/12 md:max-w-2xl pb-10 pt-4 px-6 md:px-10 rounded backdrop:bg-black backdrop:bg-opacity-50"
     >
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-4 container mx-auto"
+        className="w-full flex flex-col gap-4 container"
       >
         <label>
           Name

@@ -6,6 +6,7 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  title?: string;
   className?: string;
 }
 
@@ -13,6 +14,7 @@ export default function Modal({
   isOpen,
   onClose,
   children,
+  title,
   className,
 }: ModalProps) {
   const [isModalOpen, setIsModalOpen] = useState(isOpen);
@@ -46,7 +48,13 @@ export default function Modal({
 
   return (
     <dialog ref={modalRef} onKeyDown={handleKeyDown} className={className}>
-      <button onClick={handleCloseModal}>x</button>
+      {title && <h2 className="text-xl mb-6">{title}</h2>}
+      <button
+        onClick={handleCloseModal}
+        className="absolute top-0 right-0 text-xl pb-1 mt-2 mr-2 h-10 w-10 flex justify-center items-center focus:outline-none focus:bg-gray-200 hover:bg-gray-200 rounded transition motion-reduce:transition-none"
+      >
+        x
+      </button>
       {children}
     </dialog>
   );
