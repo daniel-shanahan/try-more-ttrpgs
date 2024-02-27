@@ -8,14 +8,26 @@ interface GameModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (game: Game) => void;
-  initialData: Game;
+  initialData?: Game;
 }
+
+const defaultInitialData: Game = {
+  name: "",
+  description: "",
+  imageUrl: "",
+  crunch: "High",
+  genre: "Fantasy",
+  gmRequired: true,
+  played: false,
+  playedDate: "",
+  thoughts: "",
+};
 
 export default function GameModal({
   isOpen,
   onClose,
   onSubmit,
-  initialData,
+  initialData = defaultInitialData,
 }: GameModalProps) {
   const focusInputRef = useRef<HTMLInputElement | null>(null);
   const [formState, setFormState] = useState<Game>(initialData);
