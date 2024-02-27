@@ -5,9 +5,11 @@ import Modal from "./Modal";
 import { Game } from "@/types/common.types";
 
 interface GameModalProps {
+  mode: "add" | "edit";
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (game: Game) => void;
+  onDelete?: () => void;
   initialData?: Game;
 }
 
@@ -24,9 +26,11 @@ const defaultInitialData: Game = {
 };
 
 export default function GameModal({
+  mode,
   isOpen,
   onClose,
   onSubmit,
+  onDelete,
   initialData = defaultInitialData,
 }: GameModalProps) {
   const focusInputRef = useRef<HTMLInputElement | null>(null);
@@ -260,12 +264,31 @@ export default function GameModal({
             />
           </label>
         )}
-        <button
-          type="submit"
-          className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-emerald-100 font-semibold rounded-full shadow-md hover:shadow-lg transition motion-reduce:transition-none"
-        >
-          Add Game
-        </button>
+        {mode === "add" && (
+          <button
+            type="submit"
+            className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-emerald-100 font-semibold rounded-full shadow-md hover:shadow-lg transition motion-reduce:transition-none"
+          >
+            Add Game
+          </button>
+        )}
+        {mode === "edit" && (
+          <div className="flex justify-between">
+            <button
+              type="button"
+              onClick={onDelete}
+              className="px-4 py-2 bg-red-500 hover:bg-red-600 text-red-100 font-semibold rounded-full shadow-md hover:shadow-lg transition motion-reduce:transition-none"
+            >
+              Delete
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-emerald-100 font-semibold rounded-full shadow-md hover:shadow-lg transition motion-reduce:transition-none"
+            >
+              Submit
+            </button>
+          </div>
+        )}
       </form>
     </Modal>
   );

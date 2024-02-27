@@ -6,7 +6,7 @@ import { Game } from "@/types/common.types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { db } from "@/firebase/firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 interface GameCardProps {
   id: string;
@@ -27,6 +27,12 @@ export default function GameCard({ id, game }: GameCardProps) {
 
   const handleFormSubmit = async (game: Game) => {
     await updateDoc(doc(db, "games", id), game);
+    handleCloseGameModal();
+    router.refresh();
+  };
+
+  const handleDelete = async () => {
+    await deleteDoc(doc(db, "games", id));
     handleCloseGameModal();
     router.refresh();
   };
@@ -71,9 +77,11 @@ export default function GameCard({ id, game }: GameCardProps) {
 
       {isGameModalOpen && (
         <GameModal
+          mode="edit"
           isOpen={isGameModalOpen}
           onClose={handleCloseGameModal}
           onSubmit={handleFormSubmit}
+          onDelete={handleDelete}
           initialData={game}
         />
       )}
