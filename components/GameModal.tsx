@@ -71,9 +71,9 @@ export default function GameModal({
     >
       <form
         onSubmit={handleSubmit}
-        className="w-full flex flex-col gap-4 container"
+        className="w-full flex flex-col gap-4 container text-gray-700"
       >
-        <label>
+        <label className="text-xs tracking-wide font-bold uppercase">
           Name
           <input
             type="text"
@@ -81,29 +81,32 @@ export default function GameModal({
             ref={focusInputRef}
             value={formState.name}
             onChange={handleInputChange}
-            className="block w-full"
+            className="block w-full mt-2 appearance-none py-2 px-4 bg-gray-200 border-gray-200 border rounded leading-none focus:outline-none focus:bg-white focus:border-emerald-500 transition motion-reduce:transition-none text-transform:none font-normal text-base"
+            placeholder="The Witch is Dead"
             required
           />
         </label>
-        <label>
+        <label className="text-xs tracking-wide font-bold uppercase">
           Image URL
           <input
             type="url"
             name="imageUrl"
             value={formState.imageUrl}
             onChange={handleInputChange}
-            className="block w-full"
+            placeholder="https://example.com/image.jpg"
+            className="block w-full mt-2 appearance-none py-3 px-4 bg-gray-200 border-gray-200 border rounded leading-none focus:outline-none focus:bg-white focus:border-emerald-500 transition motion-reduce:transition-none text-transform:none font-normal text-base"
             required
           />
         </label>
-        <label>
+        <label className="text-xs tracking-wide font-bold uppercase">
           Description
           <textarea
             name="description"
             value={formState.description}
             onChange={handleInputChange}
+            placeholder="I want to try this game"
             rows={2}
-            className="block w-full"
+            className="block w-full mt-2 appearance-none py-3 px-4 bg-gray-200 border-gray-200 border rounded leading-none focus:outline-none focus:bg-white focus:border-emerald-500 transition motion-reduce:transition-none text-transform:none font-normal text-base"
           />
         </label>
         <div className="flex justify-between">
@@ -223,7 +226,7 @@ export default function GameModal({
           </fieldset>
         </div>
         <div className="flex justify-between">
-          <label>
+          <label className="text-xs tracking-wide font-bold uppercase">
             Played
             <select
               name="played"
@@ -234,34 +237,35 @@ export default function GameModal({
                   played: e.target.value === "true",
                 }))
               }
-              className="block"
+              className="block w-full mt-2 py-3 px-4 bg-gray-200 border-gray-200 border rounded leading-none focus:outline-none focus:bg-white focus:border-emerald-500 transition motion-reduce:transition-none text-transform:none font-normal text-base"
             >
               <option value="false">No</option>
               <option value="true">Yes</option>
             </select>
           </label>
           {formState.played && (
-            <label>
+            <label className="text-xs tracking-wide font-bold uppercase">
               Played Date
               <input
                 type="date"
                 name="playedDate"
                 value={formState.playedDate}
                 onChange={handleInputChange}
-                className="block"
+                className="block w-full mt-2 appearance-none py-3 px-4 bg-gray-200 border-gray-200 border rounded leading-none focus:outline-none focus:bg-white focus:border-emerald-500 transition motion-reduce:transition-none text-transform:none font-normal text-base"
               />
             </label>
           )}
         </div>
         {formState.played && (
-          <label>
+          <label className="text-xs tracking-wide font-bold uppercase">
             Thoughts
             <textarea
               name="thoughts"
               value={formState.thoughts}
               onChange={handleInputChange}
+              placeholder="My impression after playing"
               rows={2}
-              className="block w-full"
+              className="block w-full mt-2 appearance-none py-3 px-4 bg-gray-200 border-gray-200 border rounded leading-none focus:outline-none focus:bg-white focus:border-emerald-500 transition motion-reduce:transition-none text-transform:none font-normal text-base"
             />
           </label>
         )}
