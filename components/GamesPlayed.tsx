@@ -50,7 +50,7 @@ async function getGamesPlayed(db: Firestore) {
   return [...gamesWithDate, ...gamesWithoutDate];
 }
 
-export default async function GamesToTry() {
+export default async function GamesPlayed() {
   const gamesPlayed = await getGamesPlayed(db);
 
   return <GamesSection title="Games I've played" games={gamesPlayed} />;
