@@ -4,7 +4,7 @@ import { Game } from "@/types/common.types";
 import { useState } from "react";
 import GameModal from "./GameModal";
 import { useRouter } from "next/navigation";
-import { db } from "@/firebase/firebase";
+import { db } from "@/firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 
 export default function AddGameButton() {

@@ -1,16 +1,31 @@
+import { getFirestore } from "firebase/firestore";
+import { app } from "./firebase";
 import {
   collection,
   getDocs,
-  Firestore,
   query,
   where,
   orderBy,
+  Query,
   CollectionReference,
   DocumentData,
 } from "firebase/firestore";
-import { db } from "../firebase/firebase";
 import { Game } from "@/types/common.types";
-import GamesSection from "./GamesSection";
+
+export const db = getFirestore(app);
+
+async function getGamesFromQuery(q: Query<DocumentData, DocumentData>) {
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map((doc) => {
+    return { id: doc.id, data: doc.data() as Game };
+  });
+}
+
+export async function getGamesToTry() {
+  const gamesRef = collection(db, "games");
+  const q = query(gamesRef, where("played", "==", false), orderBy("name"));
+  return await getGamesFromQuery(q);
+}
 
 async function getGamesPlayedWithDate(
   gamesRef: CollectionReference<DocumentData, DocumentData>
@@ -22,10 +37,7 @@ async function getGamesPlayedWithDate(
     orderBy("playedDate", "desc"),
     orderBy("name")
   );
-  const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((doc) => {
-    return { id: doc.id, data: doc.data() as Game };
-  });
+  return await getGamesFromQuery(q);
 }
 
 async function getGamesPlayedWithoutDate(
@@ -37,21 +49,12 @@ async function getGamesPlayedWithoutDate(
     where("playedDate", "==", ""),
     orderBy("name")
   );
-  const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((doc) => {
-    return { id: doc.id, data: doc.data() as Game };
-  });
+  return await getGamesFromQuery(q);
 }
 
-async function getGamesPlayed(db: Firestore) {
+export async function getGamesPlayed() {
   const gamesRef = collection(db, "games");
   const gamesWithDate = await getGamesPlayedWithDate(gamesRef);
   const gamesWithoutDate = await getGamesPlayedWithoutDate(gamesRef);
   return [...gamesWithDate, ...gamesWithoutDate];
-}
-
-export default async function GamesPlayed() {
-  const gamesPlayed = await getGamesPlayed(db);
-
-  return <GamesSection title="Games I've played" games={gamesPlayed} />;
 }
