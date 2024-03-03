@@ -5,7 +5,7 @@ import GameModal from "./GameModal";
 import { Game } from "@/types/common.types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { db } from "@/firebase/firebase";
+import { db } from "@/firebase/firestore";
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 interface GameCardProps {
